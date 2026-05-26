@@ -1,0 +1,19 @@
+class Solution {
+    static int maxCandy(int height[], int n) {
+        int left=0;
+        int right=height.length-1;
+        int max=0;
+        while(left<right){
+            int length=right-left-1;
+            int water=length*(Math.min(height[left],height[right]));
+            if(height[left]<height[right]){
+                left++;
+            }
+            else{
+                right--;
+            }
+            max=Math.max(max,water);
+        }
+        return max;
+    }
+}
