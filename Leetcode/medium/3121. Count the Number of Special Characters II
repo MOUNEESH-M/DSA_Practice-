@@ -1,0 +1,29 @@
+class Solution {
+    public int numberOfSpecialChars(String word) {
+        HashMap<Character,Integer> map=new HashMap<>();
+        int count=0;
+        int[] arr=new int[27];
+        Arrays.fill(arr,-1);
+        for(int i=0;i<word.length();i++){
+            if(word.charAt(i)+0<=90){
+                if(map.containsKey((char)(word.charAt(i)+32))&& arr[word.charAt(i)-'A']!=0){
+                    arr[word.charAt(i)-'A']=1;
+                }
+            }
+            else if(word.charAt(i)+0<=122){
+                if(map.containsKey((char)(word.charAt(i)-32))){
+                    arr[word.charAt(i)-'a']=0;
+                }
+            }
+            if(!map.containsKey(word.charAt(i))){
+                map.put(word.charAt(i),1);
+            }
+        }
+        for(int i:arr){
+            if(i!=-1){
+            count=count+i;
+            }
+        }
+        return count;
+    }
+}
