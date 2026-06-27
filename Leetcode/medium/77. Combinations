@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        int[] nums=new int[n];
+        for(int i=1;i<=n;i++){
+            nums[i-1]=i;
+        }
+        List<List<Integer>> arr=new ArrayList<>();
+        List<Integer> temp=new ArrayList<>();
+        helper(1,n,k,arr,temp);
+        return arr;
+    }
+    public static void helper(int t,int n,int k,List<List<Integer>> arr,List<Integer> temp){
+        if(k==0){
+            List<Integer> a=new ArrayList<>(temp);
+            arr.add(a);
+            return;
+        }
+        for(int i=t;i<=n;i++){
+            temp.add(i);
+            helper(i+1,n,k-1,arr,temp);
+            temp.remove(temp.size()-1);
+            
+            
+        }
+    }
+}
