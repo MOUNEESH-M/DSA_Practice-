@@ -1,0 +1,38 @@
+class Solution {
+    public int numIslands(char[][] grid) {
+        int[][] vis=new int[grid.length][grid[0].length];
+        Queue<int []> q=new LinkedList<>();
+        int count=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(vis[i][j]==0 && grid[i][j]=='1'){
+                    q.offer(new int[]{i,j});
+                    vis[i][j]=1;
+                    count++;
+                    while(!q.isEmpty()){
+                    int[] curr=q.poll();
+                    int st=curr[0];
+                    int end=curr[1];
+                    if(st-1>=0 && grid[st-1][end]=='1' && vis[st-1][end]==0){
+                        q.offer(new int[]{st-1,end});
+                        vis[st-1][end]=1;
+                    }
+                    if(st+1<grid.length && grid[st+1][end]=='1' && vis[st+1][end]==0){
+                        q.offer(new int[]{st+1,end});
+                        vis[st+1][end]=1;
+                    }
+                    if(end-1>=0 && grid[st][end-1]=='1' && vis[st][end-1]==0){
+                        q.offer(new int[]{st,end-1});
+                        vis[st][end-1]=1;
+                    }
+                    if(end+1<grid[0].length && grid[st][end+1]=='1' && vis[st][end+1]==0){
+                        q.offer(new int[]{st,end+1});
+                        vis[st][end+1]=1;
+                    }
+                }
+            }
+        }
+    }
+    return count;
+}
+}
