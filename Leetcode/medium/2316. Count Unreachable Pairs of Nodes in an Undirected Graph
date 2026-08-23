@@ -1,0 +1,47 @@
+class Solution {
+    public long countPairs(int n, int[][] edges) {
+        if(edges.length==0){
+            return (long) n * (n - 1) / 2;
+        }
+        ArrayList<ArrayList<Integer>> edg=new ArrayList<>();
+        ArrayList<ArrayList<Integer>> arr=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            edg.add(new ArrayList<>());
+        }
+        for(int i=0;i<edges.length;i++){
+            edg.get(edges[i][0]).add(edges[i][1]);
+            edg.get(edges[i][1]).add(edges[i][0]);
+        }
+        Queue<Integer> q=new LinkedList<>();
+        int[] vis=new int[n];
+        for(int i=0;i<n;i++){
+            if(vis[i]==0){
+                ArrayList<Integer> temp=new ArrayList<>();
+                q.offer(i);
+                while(!q.isEmpty()){
+                    int curr=q.poll();
+                    for(Integer j:edg.get(curr)){
+                        if(vis[j]==0){
+                            vis[j]=1;
+                            q.offer(j);
+                            temp.add(j);
+                        }
+                    }
+                }
+                if(temp.isEmpty()){
+                    temp.add(i);
+                }
+                arr.add(temp);
+            }
+        }
+        long count=0;
+        for(int i=0;i<arr.size();i++){
+            for(int j=i;j<arr.size();j++){
+                if(i!=j){
+                   count=count+((long)arr.get(i).size()*(long)arr.get(j).size());
+                }
+            }
+        }
+        return count;
+    }
+}
