@@ -1,0 +1,13 @@
+class Solution {
+    int minCost(int[] height) {
+        int[] cost=new int[height.length];
+        if(1<height.length){
+            cost[1]=Math.abs(height[0]-height[1]);
+        }
+        for(int i=2;i<height.length;i++){
+            cost[i]=Math.min(Math.abs(height[i-1]-height[i])+cost[i-1],Math.abs(height[i-2]-height[i])+cost[i-2]);
+        }
+        return cost[height.length-1];
+    }
+    
+}
