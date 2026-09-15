@@ -1,0 +1,20 @@
+class Solution {
+    public int areaOfMaxDiagonal(int[][] dimensions) {
+        int diag=0;
+        float max=0;
+        for(int[] i:dimensions){
+            System.out.println((int)Math.sqrt((i[0]*i[0])+(i[1]*i[1])));
+            float temp=(float)Math.sqrt((i[0]*i[0])+(i[1]*i[1]));
+            if(max<=temp){
+                if(max==temp){
+                    diag=Math.max(diag,i[0]*i[1]);
+                }
+                else{
+                    diag=i[0]*i[1];
+                    max=temp;
+                    }
+            }
+        }
+        return diag;
+    }
+}
