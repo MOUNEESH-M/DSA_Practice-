@@ -1,0 +1,21 @@
+class Solution {
+    public long[] sumOfThree(long num) {
+        long start=-1;
+        long end=(num/2)+1;
+        while(start<=end){
+            long mid=(start+end)/2;
+            if(((3*mid)+3)==num){
+                long[] arr={mid,mid+1,mid+2};
+                return arr;
+            }
+            else if(((3*mid)+3)>num){
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        long[] arr={};
+        return arr;
+    }
+}
